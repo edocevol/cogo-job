@@ -8,7 +8,7 @@ import (
 //go:generate ./bin/init_cobra_job.sh
 
 func main() {
-	if err := job.BakeJob.Execute(); err != nil {
+	if err := job.CogoJob.Execute(); err != nil {
 		os.Exit(-1)
 	}
 }

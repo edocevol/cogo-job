@@ -23,10 +23,9 @@ var coJobOptions = struct {
 	//cfg_file string
 }{}
 
-var BakeJob = &cobra.Command{
-	Use:               "./cogo",
+var CogoJob = &cobra.Command{
+	Use:               "cogo",
 	Short:             "cogo, a job framework base on cobra",
-	SilenceUsage:      true,
 	DisableAutoGenTag: true,
 	Long:              "基于cobra的Golang Job实现方案",
 	PersistentPreRun:  preRun,
@@ -34,13 +33,13 @@ var BakeJob = &cobra.Command{
 
 func init() {
 	//NOTE 这里不能使用h作为参数，-h参数为help占用
-	BakeJob.PersistentFlags().StringVarP(&coJobOptions.pprofHost, "host", "m", "0.0.0.0", "pprof server ip")
-	BakeJob.PersistentFlags().IntVarP(&coJobOptions.cpuNum, "cpu_num", "p", 1, "cpu num")
+	CogoJob.PersistentFlags().StringVarP(&coJobOptions.pprofHost, "host", "m", "0.0.0.0", "pprof server ip")
+	CogoJob.PersistentFlags().IntVarP(&coJobOptions.cpuNum, "cpu_num", "p", 1, "cpu num")
 
-	BakeJob.AddCommand(support.Version)
-	BakeJob.AddCommand(support.Starter)
+	CogoJob.AddCommand(support.Version)
+	CogoJob.AddCommand(support.Starter)
 
-	AutoInitJob(BakeJob)
+	AutoInitJob(CogoJob)
 
 	cpuMaxnum := runtime.NumCPU()
 	if coJobOptions.cpuNum == 0 || coJobOptions.cpuNum >= cpuMaxnum {
