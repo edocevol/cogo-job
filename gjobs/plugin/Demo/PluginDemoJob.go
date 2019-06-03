@@ -11,12 +11,9 @@ func Run(jobName string, args ...interface{}) {
 	}
 
 	name := (args[0:1])[0] // 取第一个参数
-	// 用timer来模拟一个需要运行30s的任务
+	// 用timer来模拟一个需要运行6s的任务
 	timer := time.After(time.Second * 6)
-	select {
-	case <-timer:
-		break
-	}
+	<-timer
 	log.Println("===============================")
 	log.Println("===============================")
 	log.Println("This is a go plugin job demo", name)
